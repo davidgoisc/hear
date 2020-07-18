@@ -1,38 +1,119 @@
-.App {
-  text-align: center;
+* {
+    font-family: 'Playfair Display', serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*:focus {
+    outline: none
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+svg:hover{
+    cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 18.75%;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000;
+    font-size: 3.875em;
+    box-sizing: border-box;
+    color: #FFF;
 }
 
-.App-link {
-  color: #61dafb;
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 12.5%;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    color: #FFF;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+p {
+    margin: 0;
+}
+
+p:hover{
+    cursor: pointer
+}
+
+img {
+    height: 85%;
+    width: 6%;
+    margin-right: 10px
+}
+
+.option {
+    background-color: #000;
+    height: 60%;
+    width: 20%;
+    margin: 0 10px;
+    border-radius: 50px;
+    border: none;
+    font-size: 1.875em;
+    color: #FFF;
+    transition: padding-bottom 1s;
+}
+
+.option:hover{
+    cursor: pointer;
+    padding-bottom: 30px
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+#settings {
+    position: absolute;
+    right: 5%;
+    padding: 10px 30px;
+    background-color: #FFF;
+    border-radius: 10px;
+    color: #000;
+    font-size: 0.43em;
+    visibility: hidden;
+}
+#settings:active{
+    visibility: hidden;
+}
+
+#visual {
+    position: absolute;
+    top: 18.75%;
+    left: 0;
+    width: 100%;
+    height: 56.25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+}
+
+#piano {
+    width: 70%;
+    height: 90%
+}
+
+#answer{
+    position: absolute;
+    bottom: 12.5%;
+    left: 0;
+    width: 100%;
+    height: 12.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
