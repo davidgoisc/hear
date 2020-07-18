@@ -10,7 +10,7 @@ Ele reproduz um intervalo e te mostra três opções, das quais apenas uma corre
 
 Depois de clicar em uma das opções, a opção correta será destacada e o intervalo tocará novamente, como uma forma de melhorar o processo de associação.
 
-![Interface do Hear](https://imgur.com/h91CozE)
+![Interface do Hear](https://i.imgur.com/h91CozE.png)
 
 ##Esta é a primeira versão do aplicativo, então existem algumas features não implementadas e alguns bugs, que seriam:
 
