@@ -6,12 +6,12 @@
     outline: none
 }
 
-svg:hover{
-    cursor: pointer;
+body {
+    overflow: hidden
 }
 
 header {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -24,6 +24,44 @@ header {
     font-size: 3.875em;
     box-sizing: border-box;
     color: #FFF;
+    animation: header 1s;
+}
+
+p {
+    text-align: center;
+    margin: 0;
+    transition: text-decoration 1s;
+}
+
+p:hover {
+    cursor: pointer;
+}
+
+p:after{
+    content: "";
+    position: relative;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: transparent;
+    display: block;
+    transition: width 500ms, left 500ms
+}
+
+p:hover:after {
+    background: #000;
+    left: 0;
+    width: 100%
+}
+
+.header-section img {
+    height: 85%;
+    width: 6%;
+    margin-right: 10px
+}
+
+svg:hover {
+    cursor: pointer;
 }
 
 footer {
@@ -38,20 +76,74 @@ footer {
     justify-content: center;
     background-color: #000;
     color: #FFF;
+    animation: footer 1s;
 }
 
-p {
-    margin: 0;
+a {
+    color: #FFF;
+    text-decoration: none;
 }
 
-p:hover{
-    cursor: pointer
+.header-section {
+    display: flex;
+    align-items: center;
+    justify-content: right;
 }
 
-img {
-    height: 85%;
-    width: 6%;
-    margin-right: 10px
+.settings {
+    position: absolute;
+    right: 5%;
+    padding: 10px 30px;
+    border-radius: 10px;
+    background-color: #FFF;
+    color: #000;
+    font-size: 0.43em;
+    direction: rtl;
+    visibility: hidden;
+    direction: ltr; 
+    overflow: hidden;
+}
+
+.hidden-settings {
+    animation: hide 500ms forwards;
+}
+
+.visible-settings {
+    animation: show 500ms forwards;
+}
+
+.selected {
+    font-weight: bold;
+}
+
+.selected:hover:after{
+    background: transparent
+}
+
+.white-key {
+    position: absolute;
+    z-index: 2;
+    left: 26%;
+    bottom: 10%;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: #f00
+}
+
+.black-key {
+    position: absolute;
+    z-index: 2;
+    left: 29.3%;
+    bottom: 40%;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: #f00
+}
+
+.replay {
+    animation: replay 1s;
 }
 
 .option {
@@ -63,31 +155,27 @@ img {
     border: none;
     font-size: 1.875em;
     color: #FFF;
-    transition: padding-bottom 1s;
+    transition: padding-bottom 500ms;
 }
 
 .option:hover{
     cursor: pointer;
-    padding-bottom: 30px
+    padding-bottom: 10px
 }
 
-.logo {
-    display: flex;
-    align-items: center;
+.option:nth-child(1) {
+    animation: up 300ms backwards;
+    animation-delay: 600ms
 }
 
-#settings {
-    position: absolute;
-    right: 5%;
-    padding: 10px 30px;
-    background-color: #FFF;
-    border-radius: 10px;
-    color: #000;
-    font-size: 0.43em;
-    visibility: hidden;
+.option:nth-child(2) {
+    animation: up 300ms backwards;
+    animation-delay: 800ms;
 }
-#settings:active{
-    visibility: hidden;
+
+.option:nth-child(3) {
+    animation: up 300ms backwards;
+    animation-delay: 1100ms;
 }
 
 #visual {
@@ -100,14 +188,22 @@ img {
     align-items: center;
     justify-content: center;
     color: #000;
+    animation: visual 1s backwards;
+    animation-delay: 50ms;
 }
 
 #piano {
-    width: 70%;
-    height: 90%
+    width: 60%;
+    height: 90%;
+    margin-right: 10px
 }
 
-#answer{
+#piano img {
+    width: 100%;
+    height: 100%
+}
+
+#answer {
     position: absolute;
     bottom: 12.5%;
     left: 0;
@@ -116,4 +212,95 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@keyframes header {
+    from {
+        transform: translateY(-500px)
+    }
+    to {
+        transform: translateY(0)
+    }
+}
+
+@keyframes show {
+    0% {
+        max-width: 0%;
+        max-height: 0%;
+        color: #FFF;
+        opacity: 0;
+        visibility: visible;
+    }
+    25% {
+        opacity: 1
+    }
+    50% {
+        max-height: 100%;
+        color: #FFF
+    }
+    100% {
+        max-width: 100%;
+        max-height: auto;
+        color: #000;
+        visibility: visible;
+    }
+}
+
+@keyframes hide {
+    0% {
+        visibility: visible;
+        max-width: 100%
+    }
+    50% {
+        max-height: 100%;
+        color: #FFF
+    }
+    75%{
+        opacity: 1;
+    }
+    100% {
+        visibility: hidden;
+        color: #FFF;
+        max-width: 0;
+        max-height: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes visual {
+    from {
+        transform: translateY(200px);
+        opacity: 0
+    } to {
+        transform: translateY(0);
+        opacity: 1
+    }
+}
+
+@keyframes up {
+    from {
+        opacity: 0;
+        transform: translateY(200px);
+    } to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes replay {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(-360deg)
+    }
+}
+
+@keyframes footer {
+    from {
+        transform: translateY(500px)
+    }
+    to {
+        transform: translateY(0)
+    }
 }

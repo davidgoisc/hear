@@ -13,7 +13,7 @@ function App() {
     "Minor 3rd",
     "Major 3rd",
     "Perfect 4th",
-    "Dimished 5th",
+    "Diminished 5th",
     "Perfect 5th",
     "Minor 6th",
     "Major 6th",
@@ -23,11 +23,16 @@ function App() {
   ]
 
   const [prevNote, setNote] = useState(0);
-  const [base, note] = document.getElementsByTagName('audio');
+  const [prevBase, setBase] = useState(0);
+  const [mode, setMode] = useState(0);
   const [options, setOptions] = useState([names[0], names[1], names[2]]);
 
-  base.src = '../notes/0.mp3'
+  const interval = Math.abs(prevBase - prevNote);
+
+  const [base, note] = document.getElementsByTagName('audio');
+  base.src = `../notes/${prevBase}.mp3`
   note.src = `../notes/${prevNote}.mp3`;
+
   base.onended = () => {
     note.play()
   }
@@ -35,143 +40,173 @@ function App() {
     play()
   }
 
-  var play = () => {
-    base.play()
-  }
-  //Why isn't this working?
-  function harmonic(){
-    base.onended = () => {}
-    play = () => {
+  const play = () => {
+    if (mode) {
+      base.onended = () => {};
       base.play();
-      note.play()
+      note.play();
+    } else {
+      base.play()
     }
-    toggleSettings();
   }
 
-  function melodic(){
-    base.onended = () => {
-      note.play()
+  function replay(){
+    play()
+    const replayButton = document.getElementById('replay');
+    replayButton.classList.add('replay')
+    replayButton.onanimationend = () => {
+      replayButton.classList.remove('replay')
     }
-    play = () => {
-      base.play();
-    }
-    toggleSettings();
   }
 
   function toggleSettings(){
-    const vis = document.getElementById('settings').style;
-    if (vis.visibility === 'visible') {
-      vis.visibility = 'hidden';
-    } else {
-      vis.visibility = 'visible';
+    const settings = document.getElementsByClassName('settings')[0];
+    if (settings.className === 'settings'){
+      settings.classList.add('visible-settings')
+    }
+    else {
+      settings.classList.toggle('visible-settings');
+      settings.classList.toggle('hidden-settings');
     }
   }
 
-  function getRandomNote(){
-    return Math.floor(Math.random() * 13)
-  }
+  function getNote(){
+    const except = [...arguments]
+    var value;
+    do {
+      value = Math.floor(Math.random() * 13)
+    } while (except.indexOf(value) !== -1)
 
-  async function check(option){
+    return value;
+  }
+  
+  async function check(){
     const buttons = document.getElementsByTagName('button');
-    //Show answers
+    //Show answer
     for (let item of buttons) {
-      if (item.innerHTML === names[prevNote]) {
+      if (item.innerHTML === names[interval]) {
         item.style.backgroundColor = '#0A0'
       } else {
         item.style.backgroundColor = "#A00"
       }
     }
     play()
-
+    //Set new question
     setTimeout(async () => {
         for(let item of buttons){
           item.style.backgroundColor = "#000"
         }
-        var tone;
-        do {
-          tone = getRandomNote()
-        } while (tone === prevNote)
-        await setNote(tone)
 
-        //Bad idea but should wotrk for now
+        const newBase = getNote(prevBase);
+        await setBase(newBase)
+
+        const newNote = getNote(prevNote)
+        await setNote(newNote)
+        
+        const newInterval = Math.abs(newBase - newNote)
+
+        //Bad idea but should work for now
         var wrongOptions = new Array(3);
-        do {
-          wrongOptions[0] = getRandomNote();
-        } while (wrongOptions[0] === tone)
 
-        do {
-          wrongOptions[1] = getRandomNote();
-        } while (wrongOptions[1] === tone || wrongOptions[1] === wrongOptions[0])
-
-        do {
-          wrongOptions[2] = getRandomNote();
-        } while (wrongOptions[2] === tone || wrongOptions[2] === wrongOptions[0] || wrongOptions[2] === wrongOptions[1])
+        wrongOptions[0] = getNote(newInterval, ...wrongOptions)
+        wrongOptions[1] = getNote(newInterval, ...wrongOptions)
+        wrongOptions[2] = getNote(newInterval, ...wrongOptions)
 
         var rightAnswerPos;
-        do{
+        do {
           rightAnswerPos = Math.floor(Math.random() * 3);
-        } while (rightAnswerPos === options.indexOf(names[prevNote]))
+        } while (rightAnswerPos === options.indexOf(names[interval]))
 
         const newOptions = options.map((value, index) => {
           if(index === rightAnswerPos) {
-            return names[tone]
+            return names[newInterval]
           } else {
             return names[wrongOptions[index]];
           }
         })
         await setOptions(newOptions)
+
         play()
     }, 2000)
-
-    
   }
+
   return (
     <div className="App">
       <header>
-        <section className="logo">
+        <section className="header-section">
           <img src={Clef} alt="clef"/>
           HEAR
         </section>
-        <section>
-          <div id="settings">
-            <p onClick={()=>{melodic()}}>MELODIC</p>
-            <p onClick={()=>{harmonic()}}>HARMONIC</p>
+        <section className="header-section" style={{justifyContent: 'right'}}>
+          <div
+            className="settings"
+          >
+            <p
+              className={!mode && 'selected'} 
+              onClick={async () => {
+                await setMode(0);
+                toggleSettings()
+              }
+            }>
+              MELODIC
+            </p>
+            <p
+              className={mode && 'selected'}
+              onClick={async () => {
+                await setMode(1);
+                toggleSettings()
+              }
+            }>
+              HARMONIC
+            </p>
           </div>
           <MdMoreVert
+            alt="settings"
             onClick={() => {toggleSettings()}}
           />
         </section>
       </header>
 
       <section id="visual">
-        <img id='piano' src={Piano} alt='piano'/>
-        <MdReplay alt="Replay" size={46} onClick={() => {play()}}/>
+        <div id='piano'>
+          <img src={Piano} alt='piano'/>
+        </div>
+        <MdReplay
+          id="replay"
+          alt="Replay" 
+          size={46}
+          onClick={() => {replay()}}
+        />
       </section>
 
       <section id="answer">
         <button
           className='option'
-          onClick={()=> {check(names.indexOf(options[0]))}}
+          onClick={()=> {check()}}
         >
           {options[0]}
         </button>
         <button
           className='option'
-          onClick={()=> {check(names.indexOf(options[1]))}}
+          onClick={()=> {check()}}
         >
           {options[1]}
         </button>
         <button
           className='option'
-          onClick={()=> {check(names.indexOf(options[2]))}}
+          onClick={()=> {check()}}
         >
           {options[2]}
         </button>
       </section>
       <footer>
-        <p>
+        <a
+          href="http://www.github.com/davidgoisc/hear"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           David Gois <MdCopyright/> 2020
-        </p>
+        </a>
       </footer>
     </div>
   );
