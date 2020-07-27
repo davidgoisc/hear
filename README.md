@@ -12,11 +12,22 @@ Depois de clicar em uma das opções, a opção correta será destacada e o inte
 
 ![Interface do Hear](https://i.imgur.com/h91CozE.png)
 
-## Esta é a primeira versão do aplicativo, então existem algumas features não implementadas e alguns bugs, que seriam:
+## Esta é a versão 2.0 do aplicativo. O changelog é:
+
+### Adicionado:
+
+• Modo 'Harmônico';
+• Animações da UI.
+
+### Modificado
+
+• Samples de audio substituídas para melhor qualidade.
+
+## Algumas features não implementadas e alguns bugs restantes, que seriam:
 
  • O Google Chrome não permite que o primeiro intervalo  toque na inicialização da página;
 
- • O piano ainda não é usado para demonstrar os intervalos visualmente;
+ • O piano ainda não é usado para demonstrar os intervalos visualmente.
  
  ## Todavia...
  
