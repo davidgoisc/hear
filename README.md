@@ -17,6 +17,7 @@ Depois de clicar em uma das opções, a opção correta será destacada e o inte
 ### Adicionado:
 
 • Modo 'Harmônico';
+
 • Animações da UI.
 
 ### Modificado
