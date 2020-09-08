@@ -1,28 +1,29 @@
 * {
     font-family: 'Playfair Display', serif;
+    box-sizing: border-box;
 }
 
 *:focus {
     outline: none
 }
 
-body {
-    overflow: hidden
+html, body {
+    font-size: 16px;
+    overflow: hidden;
 }
 
 header {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 18.75%;
+    width: 100vw;
+    height: 18vh;
     padding: 0 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: #000;
-    font-size: 3.875em;
-    box-sizing: border-box;
+    font-size: 4rem;
     color: #FFF;
     animation: header 1s;
 }
@@ -30,7 +31,6 @@ header {
 p {
     text-align: center;
     margin: 0;
-    transition: text-decoration 1s;
 }
 
 p:hover {
@@ -68,8 +68,8 @@ footer {
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
-    height: 12.5%;
+    width: 100vw;
+    height: 12vh;
     padding: 0 10px;
     display: flex;
     align-items: center;
@@ -97,7 +97,7 @@ a {
     border-radius: 10px;
     background-color: #FFF;
     color: #000;
-    font-size: 0.43em;
+    font-size: 1.75rem;
     direction: rtl;
     visibility: hidden;
     direction: ltr; 
@@ -148,12 +148,12 @@ a {
 
 .option {
     background-color: #000;
-    height: 60%;
-    width: 20%;
+    height: 45px;
+    width: 300px;
     margin: 0 10px;
     border-radius: 50px;
     border: none;
-    font-size: 1.875em;
+    font-size: 2rem;
     color: #FFF;
     transition: padding-bottom 500ms;
 }
@@ -180,10 +180,10 @@ a {
 
 #visual {
     position: absolute;
-    top: 18.75%;
+    top: 18vh;
     left: 0;
-    width: 100%;
-    height: 56.25%;
+    width: 100vw;
+    height: 57vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -193,22 +193,22 @@ a {
 }
 
 #piano {
-    width: 60%;
-    height: 90%;
     margin-right: 10px
 }
 
 #piano img {
-    width: 100%;
-    height: 100%
+    min-width: 700px;
+    width: 60%;
+    min-height: 270px;
+    height: 90%;
 }
 
 #answer {
     position: absolute;
-    bottom: 12.5%;
+    bottom: 13vh;
     left: 0;
-    width: 100%;
-    height: 12.5%;
+    width: 100vw;
+    height: 13vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -303,4 +303,33 @@ a {
     to {
         transform: translateY(0)
     }
+}
+
+@media screen and (max-width: 425px){
+header{
+    height: 12vh
+}
+.header-section img{
+    width: 20%
+}
+
+.option{
+    width: 90vw;
+    margin-bottom: 20px;
+}
+#visual {
+    top: 12vh;
+    height: 30vh;
+    flex-direction: column;
+}
+#piano img{
+    min-width: 0;
+    width: 98vw;
+    min-height: 0;
+    height: 20vh;
+}
+#answer{
+    flex-direction: column;
+    height: 46vh
+}
 }
