@@ -12,24 +12,19 @@ Depois de clicar em uma das opções, a opção correta será destacada e o inte
 
 ![Interface do Hear](https://i.imgur.com/h91CozE.png)
 
-## Esta é a versão 2.0 do aplicativo. O changelog é:
+## Esta é a versão 3.0 do aplicativo. O changelog é:
 
 ### Adicionado:
 
-• Modo 'Harmônico';
+• Demonstração visual dos intervalos;
 
-• Animações da UI.
+• Responsividade da UI.
 
 ### Modificado
 
 • Samples de audio substituídas para melhor qualidade.
 
-## Algumas features não implementadas e alguns bugs restantes, que seriam:
+## Finalmente:
 
- • O Google Chrome não permite que o primeiro intervalo  toque na inicialização da página;
-
- • O piano ainda não é usado para demonstrar os intervalos visualmente.
+O app está completo! No entanto, atualizarei para "limpar" e melhorar o código com o tempo. Aproveitem :)
  
- ## Todavia...
- 
- O aplicativo já está perfeitamente utilizável, então, por favor, aproveitem! :)

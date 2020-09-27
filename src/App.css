@@ -120,28 +120,95 @@ a {
     background: transparent
 }
 
-.white-key {
-    position: absolute;
-    z-index: 2;
-    left: 26%;
-    bottom: 10%;
+.visual {
+    display: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 10;
     width: 20px;
     height: 20px;
     border-radius: 10px;
     background-color: #f00
 }
-
-.black-key {
-    position: absolute;
-    z-index: 2;
-    left: 29.3%;
-    bottom: 40%;
-    width: 20px;
-    height: 20px;
-    border-radius: 10px;
-    background-color: #f00
+.key0{
+    left: 13%;
+    top: -20%;
+    display: block;
+    visibility: visible;
 }
-
+.key1{
+    left: 19%;
+    top: -50%;
+    display: block;
+    visibility: visible;
+}
+.key2{
+    left: 23%;
+    top: -20%;
+    display: block;
+    visibility: visible;
+}
+.key3{
+    left: 29%;
+    top: -50%;
+    display: block;
+    visibility: visible;
+}
+.key4{
+    left: 33%;
+    top: -20%;
+    display: block;
+    visibility: visible;
+}
+.key5{
+    left: 43%;
+    top: -20%;
+    display: block;
+    visibility: visible;
+}
+.key6{
+    left: 49%;
+    top: -50%;
+    display: block;
+    visibility: visible;
+}
+.key7{
+    left: 53%;
+    top: -20%;
+    display: block;
+    visibility: visible;
+}
+.key8{
+    left: 59%;
+    top: -50%;
+    display: block;
+    visibility: visible;
+}
+.key9{
+    left: 63%;
+    top: -20%;
+    display: block;
+    visibility: visible;
+}
+.key10{
+    left: 69%;
+    top: -50%;
+    display: block;
+    visibility: visible;
+}
+.key11{
+    left: 73%;
+    top: -20%;
+    display: block;
+    visibility: visible;
+}
+.key12{
+    left: 83%;
+    top: -20%;
+    display: block;
+    visibility: visible;
+}
 .replay {
     animation: replay 1s;
 }
@@ -193,14 +260,19 @@ a {
 }
 
 #piano {
+    min-width: 700px;
+    width: 70vw;
+    min-height: 270px;
+    height: 47vh;
     margin-right: 10px
 }
 
 #piano img {
-    min-width: 700px;
-    width: 60%;
-    min-height: 270px;
-    height: 90%;
+    position: relative;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
 }
 
 #answer {
@@ -312,17 +384,30 @@ header{
 .header-section img{
     width: 20%
 }
-
+.settings{
+    border: 5px solid black;
+    position: absolute;
+    top: 13vh;
+    left: 5vw;
+    z-index: 10;
+}
 .option{
     width: 90vw;
     margin-bottom: 20px;
 }
+.visual{
+    width: 7px;
+    height: 7px;
+}
 #visual {
     top: 12vh;
-    height: 30vh;
+    height: 44vh;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
 }
-#piano img{
+#piano {
+    margin: 0;
     min-width: 0;
     width: 98vw;
     min-height: 0;
@@ -330,6 +415,47 @@ header{
 }
 #answer{
     flex-direction: column;
-    height: 46vh
+    bottom: 12vh;
+    height: 30vh
+}
+@keyframes show {
+    0% {
+        max-height: 0%;
+        color: #FFF;
+        opacity: 0;
+        visibility: visible;
+    }
+    25% {
+        opacity: 1
+    }
+    50% {
+        max-height: 100%;
+        color: #FFF
+    }
+    100% {
+        max-width: 100%;
+        max-height: auto;
+        color: #000;
+        visibility: visible;
+    }
+}
+@keyframes hide {
+    0% {
+        visibility: visible;
+        max-width: 100%
+    }
+    50% {
+        max-height: 100%;
+        color: #FFF
+    }
+    75%{
+        opacity: 1;
+    }
+    100% {
+        visibility: hidden;
+        color: #FFF;
+        max-height: 0;
+        opacity: 0;
+    }
 }
 }

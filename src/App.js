@@ -25,6 +25,7 @@ function App() {
   const [prevNote, setNote] = useState(0);
   const [prevBase, setBase] = useState(0);
   const [mode, setMode] = useState(0);
+  const [answered, setAnswered] = useState(0);
   const [options, setOptions] = useState([names[0], names[1], names[2]]);
 
   const interval = Math.abs(prevBase - prevNote);
@@ -33,16 +34,30 @@ function App() {
   base.src = `../notes/${prevBase}.mp3`
   note.src = `../notes/${prevNote}.mp3`;
 
+  base.onplay = () => {
+    if (answered) document.querySelector("#base").classList.add(`key${prevBase}`)
+  }
+
+  note.onplay = () => {
+    if (answered) document.querySelector("#note").classList.add(`key${prevNote}`)
+  }
+
   base.onended = () => {
+    document.querySelector('#base').classList.remove(`key${prevBase}`)
     note.play()
   }
   base.onloadeddata = () => {
     play()
   }
+  note.onended = () => {
+    document.querySelector('#note').classList.remove(`key${prevNote}`)
+  };
 
   const play = () => {
     if (mode) {
-      base.onended = () => {};
+      base.onended = () => {
+        if (answered) document.querySelector('#base').classList.remove(`key${prevBase}`)
+      };
       base.play();
       note.play();
     } else {
@@ -61,7 +76,7 @@ function App() {
 
   function toggleSettings(){
     const settings = document.getElementsByClassName('settings')[0];
-    if (settings.className === 'settings'){
+    if (settings.className === 'settings') {
       settings.classList.add('visible-settings')
     }
     else {
@@ -82,6 +97,7 @@ function App() {
   
   async function check(){
     const buttons = document.getElementsByTagName('button');
+    await setAnswered(1)
     //Show answer
     for (let item of buttons) {
       if (item.innerHTML === names[interval]) {
@@ -125,7 +141,7 @@ function App() {
           }
         })
         await setOptions(newOptions)
-
+        await setAnswered(0)
         play()
     }, 2000)
   }
@@ -170,6 +186,8 @@ function App() {
       <section id="visual">
         <div id='piano'>
           <img src={Piano} alt='piano'/>
+          <div id="base" className="visual"></div>
+          <div id="note" className="visual"></div>
         </div>
         <MdReplay
           id="replay"
