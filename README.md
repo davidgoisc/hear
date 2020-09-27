@@ -27,4 +27,3 @@ Depois de clicar em uma das opções, a opção correta será destacada e o inte
 ## Finalmente:
 
 O app está completo! No entanto, atualizarei para "limpar" e melhorar o código com o tempo. Aproveitem :)
- 
